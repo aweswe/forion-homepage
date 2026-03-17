@@ -1,9 +1,11 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useScroll, motion } from "framer-motion";
-import PromptModal from "./PromptModal";
 
-const HeroSection = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+interface HeroSectionProps {
+  onOpenPrompt: () => void;
+}
+
+const HeroSection = ({ onOpenPrompt }: HeroSectionProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -47,7 +49,7 @@ const HeroSection = () => {
 
               <div className="flex flex-col sm:flex-row items-center gap-6">
                 <button 
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={onOpenPrompt}
                   className="group relative px-10 py-4 rounded-full bg-white text-black font-bold uppercase text-[10px] tracking-[0.3em] overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.1)]"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-neutral-200 via-white to-neutral-200 group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
@@ -63,7 +65,6 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <PromptModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </section>
   );
 };
