@@ -1,15 +1,14 @@
 import { useRef } from "react";
-import { motion, MotionValue, useTransform, useMotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface ProductPanelProps {
   title: string;
   description: string;
   cta: string;
   index: number;
-  progress: MotionValue<number>;
+  progress: any; // Simplified for this edit
   total: number;
   mainImage: string;
-  hoverImage: string;
 }
 
 const ProductPanel = ({ 
@@ -18,55 +17,19 @@ const ProductPanel = ({
   cta, 
   index, 
   mainImage, 
-  hoverImage 
 }: ProductPanelProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Mouse tracking for hover effect
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    // Center the follower on the cursor
-    mouseX.set(e.clientX - rect.left);
-    mouseY.set(e.clientY - rect.top);
-  };
-
-  // Stacking offset: Each panel sticks at top:0
-  // Higher z-index ensures subsequent panels cover previous ones.
   return (
     <div
       ref={containerRef}
       id={`product-panel-${index}`}
       data-product-index={index}
-      onMouseMove={handleMouseMove}
       className="relative w-full flex items-center justify-center overflow-hidden bg-[#050508] border-t border-white/5 py-32 group"
     >
       {/* Cinematic Grid Backdrop */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:100px_100px] pointer-events-none" />
       <div className="absolute inset-0 bg-radial-at-c from-white/[0.015] to-transparent pointer-events-none" />
-      
-      {/* Floating Hover Image Interaction */}
-      <motion.div
-        style={{
-          x: mouseX,
-          y: mouseY,
-          translateX: "-50%",
-          translateY: "-110%",
-        }}
-        className="absolute w-[400px] aspect-video z-30 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 hidden md:block"
-      >
-        <div className="relative w-full h-full rounded-2xl overflow-hidden border border-white/20 shadow-2xl shadow-primary/20">
-          <img 
-            src={hoverImage} 
-            alt="Product Detail" 
-            className="w-full h-full object-cover scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-        </div>
-      </motion.div>
 
       {/* Main Content Layout */}
       <div className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-20 items-center p-12 relative z-20">

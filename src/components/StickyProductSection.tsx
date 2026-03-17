@@ -8,21 +8,18 @@ const products = [
     description: "AI-powered development environment built for absolute precision and orbital speed.",
     cta: "Explore IDE",
     mainImage: "/ide_mockup.png",
-    hoverImage: "/ide_detail.png",
   },
   {
     title: "Orbit Builder",
     description: "Architect full-scale AI systems instantly with the world's first cosmic builder.",
     cta: "Explore Orbit",
     mainImage: "/orbit_mockup.png",
-    hoverImage: "/orbit_detail.png",
   },
   {
     title: "Coming Soon",
     description: "A new paradigm in autonomous engineering infrastructure is launching soon.",
     cta: "Register Interest",
     mainImage: "/soon_mockup.png",
-    hoverImage: "/soon_mockup.png", // Teaser uses same image for hover for now
   },
 ];
 
@@ -65,7 +62,6 @@ const StickyProductSection = () => {
             progress={scrollYProgress}
             total={products.length}
             mainImage={product.mainImage}
-            hoverImage={product.hoverImage}
           />
         ))}
       </div>
