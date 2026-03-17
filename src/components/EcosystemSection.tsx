@@ -122,8 +122,8 @@ const EcosystemSection = () => {
             className="flex items-center justify-center"
           >
             {/* The Brand Box - Enhanced Glow */}
-            <div className="glass-card-strong px-20 py-12 flex flex-col items-center border-white/30 bg-black/80 backdrop-blur-3xl shadow-[0_0_80px_rgba(255,255,255,0.2),_0_50px_120px_rgba(0,0,0,0.9)]">
-               <h2 className="text-[8rem] md:text-[12rem] font-black text-white tracking-[0.1em] uppercase leading-[0.8]">
+            <div className="glass-card-strong px-12 py-8 flex flex-col items-center border-white/30 bg-black/80 backdrop-blur-3xl shadow-[0_0_60px_rgba(255,255,255,0.15),_0_40px_100px_rgba(0,0,0,0.9)]">
+               <h2 className="text-[4rem] md:text-[6rem] font-black text-white tracking-[0.1em] uppercase leading-[0.8]">
                  FORGJE
                </h2>
             </div>
