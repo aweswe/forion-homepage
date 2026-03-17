@@ -9,12 +9,16 @@ import SocialProofSection from "@/components/SocialProofSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
+import SmoothScroll from "@/components/SmoothScroll";
+import GlobalBackground from "@/components/GlobalBackground";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden">
-      <CustomCursor />
-      <Navbar />
+    <SmoothScroll>
+      <GlobalBackground />
+      <div className="min-h-screen bg-transparent text-foreground overflow-hidden">
+        <CustomCursor />
+        <Navbar />
       <HeroSection />
       <AboutSection />
       <StickyProductSection />
@@ -25,6 +29,7 @@ const Index = () => {
       <CTASection />
       <Footer />
     </div>
+    </SmoothScroll>
   );
 };
 

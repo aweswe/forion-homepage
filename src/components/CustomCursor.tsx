@@ -6,7 +6,7 @@ const CustomCursor = () => {
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
-  const springConfig = { damping: 25, stiffness: 250 };
+  const springConfig = { damping: 30, stiffness: 150, mass: 0.5 };
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
@@ -32,8 +32,10 @@ const CustomCursor = () => {
   return (
     <motion.div
       style={{
-        translateX: cursorXSpring,
-        translateY: cursorYSpring,
+        x: cursorXSpring,
+        y: cursorYSpring,
+        translateX: "-50%",
+        translateY: "-50%",
       }}
       className={`fixed top-0 left-0 w-4 h-4 rounded-full bg-white z-[9999] pointer-events-none mix-blend-difference flex items-center justify-center transition-transform duration-200 ${
         isPointer ? "scale-[2.5]" : "scale-100"

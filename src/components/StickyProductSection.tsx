@@ -34,7 +34,7 @@ const StickyProductSection = () => {
     <section 
       ref={containerRef}
       id="products"
-      className="relative w-full bg-[#050508] py-20"
+      className="relative w-full bg-transparent py-20"
     >
       {/* Section Header */}
       <div className="max-w-7xl mx-auto px-12 mb-20 relative z-20">

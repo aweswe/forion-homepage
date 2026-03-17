@@ -1,6 +1,5 @@
-import { useRef, Suspense } from "react";
-import { useScroll, motion, useTransform, MotionValue } from "framer-motion";
-import HeroScene from "./HeroScene";
+import { useRef } from "react";
+import { useScroll, motion } from "framer-motion";
 
 const HeroSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -12,27 +11,21 @@ const HeroSection = () => {
   return (
     <section
       ref={containerRef}
-      className="relative h-svh bg-black text-white"
+      className="relative h-svh bg-transparent text-white"
     >
-      {/* Background 3D Scene */}
-      <div className="absolute inset-0 overflow-hidden">
-        <Suspense fallback={null}>
-          <HeroScene scrollProgress={scrollYProgress} />
-        </Suspense>
-      </div>
-
       {/* Foreground Content */}
       <div className="absolute inset-0 z-10 flex flex-col pointer-events-none">
-        <div className="flex flex-1 flex-col justify-end p-12 md:p-20 pointer-events-auto">
-          <div className="flex flex-col items-start justify-between gap-12 md:flex-row md:items-end">
-            {/* Main Heading - Bottom Left */}
+        <div className="mx-auto max-w-7xl flex flex-col items-center justify-center h-full pt-20 relative z-10 text-center">
+          <div className="max-w-4xl flex flex-col items-center">
+            {/* Main Heading - Centered */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-2xl"
+              className="w-full flex justify-center"
             >
-              <h1 className="text-[18vw] font-bold leading-[0.8] tracking-tighter md:text-[14vw] lg:text-[240px] uppercase">
+              <h1 className="text-[18vw] font-bold leading-[0.8] tracking-tighter md:text-[14vw] lg:text-[180px] uppercase glow-text-strong">
                 Forgje<span className="text-primary">*</span>
               </h1>
             </motion.div>

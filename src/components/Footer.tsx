@@ -2,7 +2,7 @@ import { Instagram, Twitter, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white pt-24 pb-8 px-6 md:px-12 overflow-hidden">
+    <footer className="bg-transparent text-white pt-24 pb-8 px-6 md:px-12 overflow-hidden">
       <div className="mx-auto max-w-[1400px]">
         {/* Top Section: Newsletter and Navigation */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 mb-24">

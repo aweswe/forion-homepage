@@ -25,7 +25,7 @@ const ProductPanel = ({
       ref={containerRef}
       id={`product-panel-${index}`}
       data-product-index={index}
-      className="relative w-full flex items-center justify-center overflow-hidden bg-[#050508] border-t border-white/5 py-32 group"
+      className="relative w-full flex items-center justify-center overflow-hidden bg-transparent border-t border-white/5 py-32 group"
     >
       {/* Cinematic Grid Backdrop */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:100px_100px] pointer-events-none" />

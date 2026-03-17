@@ -18,7 +18,7 @@ const AboutSection = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <section ref={containerRef} className="relative min-h-[250vh] bg-black text-white px-6 md:px-20 py-32 overflow-hidden">
+    <section ref={containerRef} className="relative min-h-[250vh] bg-transparent text-white px-6 md:px-20 py-32 overflow-hidden">
       {/* Top Section - Large Editorial Heading */}
       <div className="relative mb-64 max-w-[1400px] mx-auto">
         <motion.div 
@@ -27,10 +27,10 @@ const AboutSection = () => {
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           className="relative z-10 flex flex-col md:flex-row items-baseline gap-4 md:gap-8 pointer-events-none"
         >
-          <h2 className="text-[15vw] md:text-[12vw] font-bold leading-none tracking-tighter">
+          <h2 className="text-[9vw] md:text-[9vw] font-bold leading-none tracking-tighter">
             About
           </h2>
-          <h2 className="text-[15vw] md:text-[12vw] font-serif-editorial italic font-medium leading-none tracking-tighter text-primary">
+          <h2 className="text-[9vw] md:text-[9vw] font-serif-editorial italic font-medium leading-none tracking-tighter text-primary">
             Forgje
           </h2>
         </motion.div>

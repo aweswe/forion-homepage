@@ -130,9 +130,9 @@
   }
 
   .glow-text-strong {
-    text-shadow: 0 0 40px hsl(var(--primary) / 0.5),
-                 0 0 80px hsl(var(--primary) / 0.3),
-                 0 0 160px hsl(var(--primary) / 0.1);
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5),
+                 0 0 40px hsl(var(--primary) / 0.3),
+                 0 0 80px hsl(var(--primary) / 0.1);
   }
 
   .glow-border {
@@ -188,7 +188,8 @@
   }
 
   .section-heading {
-    @apply text-6xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter uppercase leading-[0.9] mb-8 text-white;
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase leading-[0.9] mb-8 text-white;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
   }
 
   .section-heading-muted {
@@ -220,7 +221,8 @@
   .nav-capsule {
     @apply rounded-full border border-white/20 bg-black/40 backdrop-blur-md px-6 py-2;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 0 20px rgba(255, 255, 255, 0.1);
   }
 
   .nav-liquid-bubble {

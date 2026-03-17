@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const integrations = [
   // Top Left quadrant
@@ -56,8 +56,6 @@ const IntegrationNode = ({ node, index, scrollYProgress }: { node: any, index: n
 };
 
 const Vine = ({ endX, endY, index, scrollYProgress }: { endX: number, endY: number, index: number, scrollYProgress: any }) => {
-  // Cubic Bezier path from (0,0) to (endX, endY)
-  // We use the index to vary the curve intensity
   const cp1x = endX * 0.2;
   const cp1y = endY * 0.8;
   const cp2x = endX * 0.6;
@@ -66,11 +64,10 @@ const Vine = ({ endX, endY, index, scrollYProgress }: { endX: number, endY: numb
   const path = `M 0 0 C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
   
   const pathLength = useTransform(scrollYProgress, [0.1, 0.4 + (index * 0.05)], [0, 1]);
-  const opacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 0.2]); // Even more subtle
+  const opacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 0.2]);
 
   return (
     <g>
-      {/* Primary Vine */}
       <motion.path
         d={path}
         fill="transparent"
@@ -79,7 +76,6 @@ const Vine = ({ endX, endY, index, scrollYProgress }: { endX: number, endY: numb
         strokeLinecap="round"
         style={{ pathLength, opacity }}
       />
-      {/* Glow path (wider, more transparent, blurred) */}
       <motion.path
         d={path}
         fill="transparent"
@@ -101,7 +97,7 @@ const EcosystemSection = () => {
   });
 
   return (
-    <section ref={containerRef} className="relative py-48 px-6 overflow-hidden bg-black">
+    <section ref={containerRef} className="relative py-48 px-6 overflow-hidden bg-transparent">
       {/* Texture Layer */}
       <div className="absolute inset-0 bg-dot-grid opacity-[0.15] pointer-events-none" />
       <div className="absolute inset-0 bg-radial-at-c from-white/[0.02] to-transparent pointer-events-none" />
@@ -113,24 +109,26 @@ const EcosystemSection = () => {
           <span className="text-xl font-bold text-white tracking-tighter">WE MAINTAIN A ROBUST INTEGRATION NETWORK.</span>
         </div>
 
-        {/* Central Hub */}
-        <div className="relative z-30 flex flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="flex items-center justify-center"
-          >
-            {/* The Brand Box - Enhanced Glow */}
-            <div className="glass-card-strong px-12 py-8 flex flex-col items-center border-white/30 bg-black/80 backdrop-blur-3xl shadow-[0_0_60px_rgba(255,255,255,0.15),_0_40px_100px_rgba(0,0,0,0.9)]">
-               <h2 className="text-[4rem] md:text-[6rem] font-black text-white tracking-[0.1em] uppercase leading-[0.8]">
-                 FORGJE
-               </h2>
-            </div>
-          </motion.div>
-          <p className="mt-12 text-[10px] text-white/40 font-mono tracking-[0.5em] uppercase">
-            Global AI Integration Network
-          </p>
+        {/* Central Hub Area */}
+        <div className="relative z-30 w-full h-full flex items-center justify-center">
+          <div className="flex flex-col items-center text-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="flex items-center justify-center"
+            >
+              <div className="glass-card-strong px-12 py-10 flex flex-col items-center justify-center border-white/30 bg-black/80 backdrop-blur-3xl shadow-[0_0_60px_rgba(255,255,255,0.15),_0_40px_100px_rgba(0,0,0,0.9)]">
+                 <h2 className="text-[4rem] md:text-[6rem] font-black text-white tracking-[0.05em] uppercase leading-none">
+                   FORGJE
+                 </h2>
+              </div>
+            </motion.div>
+            
+            <p className="absolute top-[calc(50%+100px)] text-[10px] text-white/40 font-mono tracking-[0.5em] uppercase whitespace-nowrap">
+              Global AI Integration Network
+            </p>
+          </div>
         </div>
 
         {/* The Web Layer (Behind Hub) */}
@@ -149,7 +147,6 @@ const EcosystemSection = () => {
             </g>
           </svg>
           
-          {/* Nodes Container */}
           <div className="absolute inset-0 pointer-events-auto">
             <div className="relative w-full h-full flex items-center justify-center">
               {integrations.map((node, i) => (
@@ -164,7 +161,6 @@ const EcosystemSection = () => {
           </div>
         </div>
 
-        {/* Background Ambient Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/[0.02] rounded-full blur-[160px] pointer-events-none" />
       </div>
     </section>
