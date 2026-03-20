@@ -29,7 +29,7 @@ const HeroSection = ({ onOpenPrompt }: HeroSectionProps) => {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="w-full flex justify-center"
             >
-              <h1 className="text-8xl md:text-12xl lg:text-[14rem] font-bold tracking-tight leading-[0.8] mb-8 relative z-20 mix-blend-difference italic font-serif-editorial">
+              <h1 className="text-8xl md:text-12xl lg:text-[14rem] font-bold tracking-tight leading-[0.8] mb-6 relative z-20 mix-blend-difference italic font-serif-editorial">
                 Forion*
               </h1>
             </motion.div>
@@ -39,7 +39,7 @@ const HeroSection = ({ onOpenPrompt }: HeroSectionProps) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-              className="flex flex-col items-center gap-10 mt-20 pointer-events-auto"
+              className="flex flex-col items-center gap-8 mt-12 pointer-events-auto"
             >
               <p className="text-base md:text-xl md:leading-relaxed text-white/80 max-w-2xl text-center">
                 Forion is a next-generation platform for digital builders.

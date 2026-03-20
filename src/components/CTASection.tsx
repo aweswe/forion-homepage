@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const CTASection = () => {
   return (
-    <section id="cta" className="relative py-44 px-6 overflow-hidden">
+    <section id="cta" className="relative py-24 px-6 overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-nebula-strong" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-primary/[0.04] blur-[150px]" />

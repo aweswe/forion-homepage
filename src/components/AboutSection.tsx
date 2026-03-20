@@ -18,7 +18,7 @@ const AboutSection = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
-    <section ref={containerRef} className="relative min-h-screen bg-transparent text-white px-6 md:px-20 py-32 overflow-hidden">
+    <section ref={containerRef} className="relative min-h-screen bg-transparent text-white px-6 md:px-20 py-20 overflow-hidden">
       {/* Top Section - Large Editorial Heading */}
       <div className="relative mb-32 max-w-[1400px] mx-auto">
         <motion.div
@@ -112,7 +112,7 @@ const AboutSection = () => {
       </div>
 
       {/* Bottom Section - Signature Style */}
-      <div className="max-w-[1400px] mx-auto text-center py-32">
+      <div className="max-w-[1400px] mx-auto text-center py-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}

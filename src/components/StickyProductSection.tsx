@@ -25,7 +25,7 @@ const products = [
 
 const StickyProductSection = () => {
   return (
-    <section id="products" className="py-24 md:py-32 px-6 bg-transparent">
+    <section id="products" className="py-16 md:py-24 px-6 bg-transparent">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-24 px-6 md:px-0">

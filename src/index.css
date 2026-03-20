@@ -248,12 +248,12 @@
   }
 
   .nav-capsule {
-    @apply rounded-full border border-white/10 bg-black/40 backdrop-blur-2xl px-2 py-2;
-    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    @apply rounded-full border border-white/[0.08] bg-black/20 backdrop-blur-3xl px-6 py-4;
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow:
       inset 0 0 0 1px rgba(255, 255, 255, 0.05),
-      0 10px 30px -10px rgba(0, 0, 0, 0.5),
-      0 0 20px rgba(255, 255, 255, 0.03);
+      0 30px 60px -15px rgba(0, 0, 0, 0.7),
+      0 0 0 1px rgba(255, 255, 255, 0.02);
     position: relative;
     overflow: hidden;
   }
@@ -262,9 +262,9 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
     transform: translateX(-100%);
-    animation: shimmer-slow 8s infinite linear;
+    animation: shimmer-slow 15s infinite linear;
   }
 
   @keyframes shimmer-slow {
@@ -282,11 +282,11 @@
   }
 
   .nav-liquid-bubble {
-    @apply rounded-full bg-white/20 backdrop-blur-2xl border border-white/40;
+    @apply rounded-full bg-white/[0.08] backdrop-blur-3xl border border-white/20;
     box-shadow:
-      0 10px 40px -10px rgba(0, 0, 0, 0.4),
-      inset 0 0 15px rgba(255, 255, 255, 0.1),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+      0 15px 45px -12px rgba(0, 0, 0, 0.5),
+      inset 0 0 20px rgba(255, 255, 255, 0.1),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.1);
     overflow: hidden;
   }
 

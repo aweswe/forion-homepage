@@ -42,7 +42,7 @@ const ComparisonSection = () => {
   return (
     <section className="relative pt-12 pb-12 px-6 bg-transparent overflow-hidden">
       <div className="mx-auto max-w-7xl relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

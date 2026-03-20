@@ -58,7 +58,7 @@ const item = {
 
 const CapabilitiesSection = () => {
   return (
-    <section className="relative min-h-screen bg-transparent text-white px-6 md:px-20 py-32 overflow-hidden">
+    <section className="relative min-h-screen bg-transparent text-white px-6 md:px-20 py-20 overflow-hidden">
       {/* Visual Background Elements */}
       <div className="absolute inset-0 bg-dot-grid opacity-[0.03]" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />

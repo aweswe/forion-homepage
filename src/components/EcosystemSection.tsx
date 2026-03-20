@@ -149,14 +149,14 @@ const EcosystemSection = () => {
   });
 
   return (
-    <section ref={containerRef} className="relative pt-12 pb-32 px-6 overflow-hidden bg-transparent">
+    <section ref={containerRef} className="relative pt-12 pb-20 px-6 overflow-hidden bg-transparent">
       {/* Texture Layer */}
       <div className="absolute inset-0 bg-dot-grid opacity-[0.1] pointer-events-none" />
       <div className="absolute inset-0 bg-radial-at-c from-white/[0.03] via-transparent to-transparent pointer-events-none" />
 
       <div className="mx-auto max-w-7xl relative flex flex-col items-center">
         {/* Section Context Labels - Now in normal flow to sit above the network */}
-        <div className="flex flex-col items-center text-center z-40 mb-32 md:mb-48 pointer-events-none">
+        <div className="flex flex-col items-center text-center z-40 mb-16 md:mb-24 pointer-events-none">
           <span className="section-label">Connectivity</span>
           <h2 className="section-heading max-w-4xl px-6">
             We maintain a <span className="font-serif-editorial italic font-medium">robust integration</span> network.
