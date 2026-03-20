@@ -304,7 +304,7 @@ canvas {
   }
 
   .footer-brand-text {
-    font-size: clamp(4rem, 22vw, 8rem);
+    font-size: clamp(3rem, 22vw, 8rem);
   }
 }
 

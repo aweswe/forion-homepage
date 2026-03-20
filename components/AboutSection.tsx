@@ -40,7 +40,7 @@ const AboutSection = () => {
         {/* Parallax image block */}
         <motion.div
           style={{ y: y1 }}
-          className="relative md:absolute md:right-0 md:top-32 w-[120%] left-[-10%] md:left-auto md:w-[48%] aspect-[16/9] z-0 opacity-60 pointer-events-none mt-8 md:mt-0"
+          className="relative md:absolute md:right-0 md:top-32 w-full md:w-[48%] aspect-[16/9] z-0 opacity-60 pointer-events-none mt-8 md:mt-0"
         >
           <div className="relative w-full h-full rounded-2xl overflow-hidden glass-panel">
             <img

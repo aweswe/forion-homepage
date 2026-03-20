@@ -62,7 +62,7 @@ export default function Hero({ onRequestAccess }: { onRequestAccess?: () => void
         <h1
           style={{
             fontFamily: 'var(--font-bebas-neue)',
-            fontSize: 'clamp(72px, 14vw, 200px)',
+            fontSize: 'clamp(52px, 14vw, 200px)',
             lineHeight: 0.85,
             letterSpacing: '0.1em',
             color: '#f5f5f5',
