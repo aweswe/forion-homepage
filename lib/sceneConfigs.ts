@@ -1,0 +1,58 @@
+import { SceneConfig } from '@/types'
+
+export const sceneConfigs: Record<string, SceneConfig> = {
+  forion: {
+    bg: '#000510',
+    primaryColor: [40, 60, 140],
+    planetSize: 90,
+    planetX: 0.6,
+    planetY: 0.35,
+    rings: true,
+    ringColor: 'rgba(80,120,200,0.3)',
+    glowColor: 'rgba(60,100,200,0.15)',
+    moons: [{ r: 14, dist: 130, angle: 0.8, color: '#aab0c8' }],
+    satelliteColor: '#6678aa',
+  },
+  sparke: {
+    bg: '#050200',
+    primaryColor: [160, 80, 20],
+    planetSize: 80,
+    planetX: 0.55,
+    planetY: 0.4,
+    rings: false,
+    ringColor: 'rgba(200,140,60,0.25)',
+    glowColor: 'rgba(180,100,30,0.2)',
+    moons: [
+      { r: 10, dist: 110, angle: 1.2, color: '#c8b090' },
+      { r: 7, dist: 150, angle: 2.5, color: '#a89878' },
+    ],
+    satelliteColor: '#c8903a',
+  },
+  cloyde: {
+    bg: '#020508',
+    primaryColor: [20, 100, 80],
+    planetSize: 100,
+    planetX: 0.5,
+    planetY: 0.38,
+    rings: true,
+    ringColor: 'rgba(40,180,140,0.2)',
+    glowColor: 'rgba(20,140,100,0.18)',
+    moons: [{ r: 18, dist: 145, angle: 0.4, color: '#80c8b0' }],
+    satelliteColor: '#40b890',
+  },
+  orbit: {
+    bg: '#030103',
+    primaryColor: [100, 20, 120],
+    planetSize: 85,
+    planetX: 0.58,
+    planetY: 0.42,
+    rings: true,
+    ringColor: 'rgba(160,60,200,0.25)',
+    glowColor: 'rgba(120,20,160,0.2)',
+    moons: [
+      { r: 12, dist: 120, angle: 1.8, color: '#c090d0' },
+      { r: 8, dist: 160, angle: 3.2, color: '#a070b0' },
+    ],
+    satelliteColor: '#9040b8',
+  },
+}
