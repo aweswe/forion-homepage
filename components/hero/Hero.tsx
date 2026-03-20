@@ -106,22 +106,6 @@ export default function Hero({ onRequestAccess }: { onRequestAccess?: () => void
           }}
         />
 
-        {/* Status */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-          style={{
-            fontFamily: 'var(--font-jetbrains)',
-            fontSize: 9,
-            letterSpacing: '0.22em',
-            textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.22)',
-            marginTop: '1rem',
-          }}
-        >
-          ● Systems Online — v0.9.2-alpha
-        </motion.p>
 
         {/* CTAs */}
         <motion.div

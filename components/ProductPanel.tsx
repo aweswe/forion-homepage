@@ -38,7 +38,7 @@ const ProductPanel = ({
       className="relative w-full flex items-center justify-center p-0"
     >
       {/* Product Card / Panel */}
-      <div className="relative w-full glass-card-strong border-white/10 rounded-[3rem] overflow-hidden flex flex-col md:flex-row items-center gap-12 p-8 md:p-20 shadow-[0_0_100px_rgba(0,0,0,0.4)]">
+      <div className="relative w-full glass-card-strong border-white/10 rounded-[2rem] md:rounded-[3rem] overflow-hidden flex flex-col-reverse md:flex-row items-center gap-12 p-8 md:p-20 shadow-[0_0_100px_rgba(0,0,0,0.4)]">
 
         {/* Cinematic Grid Backdrop */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:100px_100px] pointer-events-none" />

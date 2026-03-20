@@ -40,7 +40,7 @@ const AboutSection = () => {
         {/* Parallax image block */}
         <motion.div
           style={{ y: y1 }}
-          className="absolute right-0 top-32 w-full md:w-[48%] aspect-[16/9] z-0 opacity-60 pointer-events-none"
+          className="relative md:absolute md:right-0 md:top-32 w-[120%] left-[-10%] md:left-auto md:w-[48%] aspect-[16/9] z-0 opacity-60 pointer-events-none mt-8 md:mt-0"
         >
           <div className="relative w-full h-full rounded-2xl overflow-hidden glass-panel">
             <img
@@ -99,9 +99,6 @@ const AboutSection = () => {
               className="w-full h-full object-cover brightness-75 transition-all duration-1000 group-hover:brightness-90"
             />
             <div className="absolute inset-0 transition-colors duration-700" style={{ background: 'rgba(0,0,0,0.35)' }} />
-            <div className="absolute bottom-6 right-6 text-right">
-              <span className="text-[9px] uppercase tracking-[0.4em]" style={{ color: 'rgba(255,255,255,0.3)' }}>Infrastructure Research Lab v1.0</span>
-            </div>
           </div>
         </div>
       </div>
