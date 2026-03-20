@@ -89,6 +89,8 @@ html {
 }
 
 body {
+  margin: 0;
+  padding: 0;
   background: transparent;
   color: var(--foreground);
   overflow-x: hidden;

@@ -18,7 +18,7 @@ const Navbar = () => {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-8 right-[132px] z-[1000] w-auto"
+      className="fixed top-8 md:right-[132px] right-6 z-[1000] w-auto"
     >
       <nav className="nav-capsule flex items-center justify-center px-4 py-1.5">
         {/* Navigation Links - Scaled & Professional (Further 25% reduction) */}
