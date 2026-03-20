@@ -77,7 +77,6 @@ export default function GlobalBackground() {
       gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
       style={{ width: '100%', height: '100%', display: 'block' }}
     >
-      <BlackHole scale={[20, 20, 1]} position={[0, -0.4, -2]} />
       <Starfield count={isMobile ? 1200 : 3000} />
     </Canvas>
   )

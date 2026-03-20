@@ -16,6 +16,7 @@ import SmoothScroll from '@/components/SmoothScroll'
 
 import { useState } from 'react'
 import RequestAccessModal from '@/components/RequestAccessModal'
+import GlobalBackgroundLoader from '@/components/GlobalBackgroundLoader'
 
 // Lazy-load the heavy Three.js / shader hero to avoid blocking initial paint
 const Hero = dynamic(() => import('@/components/hero/Hero'), { ssr: false })
@@ -25,8 +26,9 @@ export default function Home() {
 
   return (
     <SmoothScroll>
-      <main style={{ background: '#000', position: 'relative' }}>
+      <main style={{ background: 'transparent', position: 'relative' }}>
         <Nav onRequestAccess={() => setModalOpen(true)} />
+        
         <Hero onRequestAccess={() => setModalOpen(true)} />
 
         <VoidDivider variant="minimal" />

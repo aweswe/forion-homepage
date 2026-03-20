@@ -47,12 +47,12 @@ export default function RootLayout({
     >
       <body className="antialiased" style={{ background: 'transparent', margin: 0, overflowX: 'hidden', maxWidth: '100vw' }}>
 
-        {/* Layer 0 — fixed WebGL black hole background */}
-        <div style={{ position: 'fixed', inset: 0, zIndex: 0, background: '#000' }}>
+        {/* Global path-aware background (Stars everywhere, Blackhole on Home) */}
+        <div style={{ position: 'fixed', inset: 0, zIndex: 0, background: '#000', pointerEvents: 'none' }}>
           <GlobalBackgroundLoader />
         </div>
 
-        {/* Layer 1 — all page content sits on top */}
+        {/* Content sits on top */}
         <div style={{ position: 'relative', zIndex: 1 }}>
           <Cursor />
           {children}

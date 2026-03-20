@@ -198,11 +198,11 @@ function BlackHoleMesh({ onReady }: { onReady: () => void }) {
 
     gsap.to(uniforms.current.uZoom, {
       value: 1,
-      duration: 2.8,
-      ease: 'power2.inOut',
+      duration: 1.1,
+      ease: 'power2.out',
       onComplete: onReady,
     })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {

@@ -52,12 +52,8 @@ export default function AboutPage() {
                  className="w-full h-full object-cover brightness-75 group-hover:brightness-90 transition-all duration-1000"
                />
                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-               <div className="absolute bottom-12 left-12">
-                   <span className="text-[9px] uppercase tracking-[0.5em] text-white/40 mb-2 block font-mono">Infrastructure Research Lab</span>
-                   <h4 className="text-2xl font-bold tracking-tighter">v1.0 Experimental Build</h4>
-               </div>
             </motion.div>
-        </section>
+       </section>
 
         {/* Vision Section */}
         <section className="py-32 px-6 md:px-20 max-w-7xl mx-auto flex flex-col lg:flex-row gap-24 items-center">
