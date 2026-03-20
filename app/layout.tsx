@@ -43,9 +43,9 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${bebasNeue.variable} ${cormorant.variable} ${jetbrains.variable}`}
-      style={{ background: '#000' }}
+      style={{ background: '#000', overflowX: 'hidden', maxWidth: '100vw' }}
     >
-      <body className="antialiased" style={{ background: 'transparent', margin: 0 }}>
+      <body className="antialiased" style={{ background: 'transparent', margin: 0, overflowX: 'hidden', maxWidth: '100vw' }}>
 
         {/* Layer 0 — fixed WebGL black hole background */}
         <div style={{ position: 'fixed', inset: 0, zIndex: 0, background: '#000' }}>

@@ -1,5 +1,5 @@
 import { useRef, useMemo } from "react";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
 const BLACKHOLE_FRAGMENT_SHADER = `
@@ -19,7 +19,6 @@ const BLACKHOLE_FRAGMENT_SHADER = `
 
   float fbm(vec2 n) {
     float total = 0.0, amplitude = 0.5;
-    // PERFORMANCE: Reduced to 4 octaves for global backdrop
     for (int i = 0; i < 4; i++) {
       total += noise(n) * amplitude;
       n *= 2.3;
@@ -88,8 +87,14 @@ const BLACKHOLE_VERTEX_SHADER = `
   }
 `;
 
-const BlackHole = ({ position = [0, 0, 0], scale = [17, 17, 1] }: { position?: [number, number, number], scale?: [number, number, number] }) => {
+const BlackHole = ({ position = [0, 0, 0] }: { position?: [number, number, number] }) => {
   const meshRef = useRef<THREE.Mesh>(null);
+  const { viewport } = useThree();
+
+  // Dynamically scale based on viewport to prevent edge bleed or excessive cropping
+  // Use a relative scale that ensures the effect remains impactful but contained
+  const baseScale = Math.min(viewport.width, viewport.height) * 1.6;
+  const scale: [number, number, number] = [baseScale, baseScale, 1];
 
   const uniforms = useMemo(() => ({
     uTime: { value: 0 },

@@ -79,12 +79,14 @@ export default function Hero({ onRequestAccess }: { onRequestAccess?: () => void
         <p
           style={{
             fontFamily: 'var(--font-cormorant)',
-            fontSize: 'clamp(14px, 2.2vw, 22px)',
+            fontSize: 'clamp(14px, 2.2vw, 24px)',
             fontStyle: 'italic',
-            color: 'rgba(255,255,255,0.6)',
+            color: 'rgba(255,255,255,0.9)',
+            fontWeight: 500,
             marginTop: '0.4rem',
-            letterSpacing: '0.02em',
+            letterSpacing: '0.04em',
             minHeight: '1.6em',
+            textShadow: '0 2px 10px rgba(0,0,0,0.8)'
           }}
           aria-label={SUBTITLE}
         >
