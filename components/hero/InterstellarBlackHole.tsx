@@ -21,11 +21,11 @@ const bhFrag = `
   uniform float uZoom;
   uniform vec2 uResolution;
   uniform vec2 uMouse;
+  uniform float uQuality;
 
   varying vec2 vUv;
 
   #define PI 3.14159265359
-  #define MAX_STEPS 180
 
   const float BH_RADIUS = 1.5;
   const float DISK_INNER = 3.0;
@@ -41,13 +41,14 @@ const bhFrag = `
     vec3 col = vec3(0.0);
     vec2 st = vec2(atan(dir.z, dir.x), asin(clamp(dir.y, -1.0, 1.0)));
 
-    for (float scale = 80.0; scale <= 200.0; scale += 40.0) {
+    // PERFORMANCE: Reduce starfield iterations
+    for (float scale = 80.0; scale <= 160.0; scale += 40.0) {
       vec2 grid = floor(st * scale);
       float h = hash(grid + scale);
       if (h > 0.985) {
         float brightness = smoothstep(0.985, 1.0, h);
         vec3 starCol = mix(vec3(0.7, 0.8, 1.0), vec3(1.0, 0.9, 0.7), hash(grid + 200.0));
-        col += starCol * brightness * 0.5;
+        col += starCol * brightness * 0.45;
       }
     }
     return col;
@@ -68,13 +69,12 @@ const bhFrag = `
     else if (t < 0.65) col = mix(orange, red, (t - 0.35) / 0.3);
     else                col = mix(red, dark, (t - 0.65) / 0.35);
 
-    // Swirling accretion structures
+    // Swirling accretion structures - Simplified math
     float spiral1 = sin(angle * 2.0 - time * 0.35 + log2(max(r, 0.1)) * 5.0) * 0.5 + 0.5;
-    float spiral2 = sin(angle * 5.0 + time * 0.15 - r * 0.7) * 0.4 + 0.6;
     float turbulence = sin(angle * 13.0 + r * 2.2 - time * 0.18) * 0.15 + 0.85;
     float hotSpots = pow(max(sin(angle * 3.0 - time * 0.4 + r * 1.2) * 0.5 + 0.5, 0.0), 3.0);
 
-    float pattern = spiral1 * spiral2 * turbulence + hotSpots * 0.3;
+    float pattern = spiral1 * turbulence + hotSpots * 0.3;
     float brightness = pow(1.0 - t, 1.8) * pattern;
 
     return col * brightness * 3.0;
@@ -85,10 +85,7 @@ const bhFrag = `
     float aspect = uResolution.x / uResolution.y;
     uv.x *= aspect;
 
-    // Mouse parallax
     vec2 mouseShift = uMouse * 0.06;
-
-    // Camera zoom animation
     float zoom = clamp(uZoom, 0.0, 1.0);
     float camDist = mix(35.0, 11.0, zoom);
     float camY = mix(12.0, 3.2, zoom);
@@ -102,14 +99,18 @@ const bhFrag = `
 
     vec3 rd = normalize(fwd * 2.0 + rgt * uv.x + up * uv.y);
 
-    // Ray march with gravitational lensing
     vec3 pos = ro;
     vec3 vel = rd;
     vec3 color = vec3(0.0);
     float totalAlpha = 0.0;
     bool absorbed = false;
 
-    for (int i = 0; i < MAX_STEPS; i++) {
+    // PERFORMANCE FIX: Strictly capped raymarching steps
+    int maxSteps = int(uQuality);
+
+    for (int i = 0; i < 90; i++) {
+      if (i >= maxSteps) break;
+
       float dist = length(pos);
 
       if (dist < BH_RADIUS) {
@@ -120,19 +121,16 @@ const bhFrag = `
       if (dist > 50.0) break;
       if (totalAlpha > 0.98) break;
 
-      // Adaptive step size
-      float h = max(0.02, min(0.22, (dist - BH_RADIUS) * 0.1));
+      float h = max(0.03, min(0.25, (dist - BH_RADIUS) * 0.12));
 
-      // Geodesic equation — photon deflection in Schwarzschild spacetime
       vec3 crossPV = cross(pos, vel);
       float h2 = dot(crossPV, crossPV);
-      vec3 accel = -1.5 * h2 * pos / pow(dist, 5.0);
+      vec3 accel = -1.5 * h2 * pos / (dist * dist * dist * dist * dist); // Manual pow expansion for perf
 
       vel += accel * h;
       vec3 prevPos = pos;
       pos += vel * h;
 
-      // Accretion disk intersection (y=0 plane)
       if (prevPos.y * pos.y < 0.0) {
         float frac = abs(prevPos.y) / (abs(prevPos.y) + abs(pos.y));
         vec3 hitPos = mix(prevPos, pos, frac);
@@ -141,17 +139,16 @@ const bhFrag = `
         if (r > DISK_INNER * 0.8 && r < DISK_OUTER) {
           float angle = atan(hitPos.z, hitPos.x);
 
-          // Doppler beaming from orbital motion
           vec3 orbVel = cross(vec3(0.0, 1.0, 0.0), normalize(vec3(hitPos.x, 0.0, hitPos.z)));
           float orbSpeed = sqrt(BH_RADIUS / (2.0 * r));
           float doppler = 1.0 + dot(normalize(vel), orbVel) * orbSpeed * 4.0;
-          doppler = clamp(doppler, 0.15, 4.0);
+          doppler = clamp(doppler, 0.2, 3.5);
 
-          vec3 dc = diskColor(r, angle, uTime) * pow(doppler, 2.5);
+          vec3 dc = diskColor(r, angle, uTime) * pow(doppler, 2.2);
 
           float innerFade = smoothstep(DISK_INNER * 0.7, DISK_INNER * 1.3, r);
           float outerFade = 1.0 - smoothstep(DISK_OUTER * 0.7, DISK_OUTER, r);
-          float opacity = innerFade * outerFade * 0.85;
+          float opacity = innerFade * outerFade * 0.8;
 
           color += dc * opacity * (1.0 - totalAlpha);
           totalAlpha += opacity * (1.0 - totalAlpha);
@@ -159,27 +156,19 @@ const bhFrag = `
       }
     }
 
-    // Background stars (gravitationally lensed direction)
     if (!absorbed && totalAlpha < 1.0) {
       color += starField(normalize(vel)) * (1.0 - totalAlpha);
     }
 
-    // Warm ambient glow around disk region
     float centerDist = length(uv);
-    float glow = exp(-centerDist * 0.5) * 0.025 * zoom;
+    float glow = exp(-centerDist * 0.5) * 0.02 * zoom;
     color += vec3(1.0, 0.65, 0.25) * glow;
 
-    // Eerie outer halo — faint violet edge
-    float halo = exp(-centerDist * 0.3) * 0.008;
+    float halo = exp(-centerDist * 0.3) * 0.006;
     color += vec3(0.3, 0.1, 0.5) * halo;
 
-    // Tone mapping (Reinhard)
     color = color / (color + vec3(1.0));
     color = pow(color, vec3(0.88));
-
-    // Vignette
-    float vig = 1.0 - dot(vUv - 0.5, vUv - 0.5) * 2.0;
-    color *= clamp(vig, 0.0, 1.0);
 
     gl_FragColor = vec4(color, 1.0);
   }
@@ -190,12 +179,14 @@ function BlackHoleMesh({ onReady }: { onReady: () => void }) {
   const { size } = useThree()
   const reduced = useReducedMotion()
   const mouseTarget = useRef(new THREE.Vector2(0, 0))
+  const isMobile = size.width < 768
 
   const uniforms = useRef({
     uTime: { value: 0 },
     uZoom: { value: 0 },
     uResolution: { value: new THREE.Vector2(size.width, size.height) },
     uMouse: { value: new THREE.Vector2(0, 0) },
+    uQuality: { value: isMobile ? 45.0 : 75.0 }, // Aggressive step reduction
   })
 
   useEffect(() => {
@@ -246,14 +237,17 @@ interface InterstellarBlackHoleProps {
 }
 
 export default function InterstellarBlackHole({ onReady = () => {} }: InterstellarBlackHoleProps) {
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
-
+  // PERFORMANCE FIX: Lock DPR to 1 to halve fragment shader workload on high-res displays
   return (
     <Canvas
       camera={{ position: [0, 0, 1], fov: 90 }}
       style={{ position: 'absolute', inset: 0 }}
-      gl={{ antialias: false, alpha: false }}
-      dpr={isMobile ? [1, 1] : [1, 1.5]}
+      gl={{ 
+        antialias: false, 
+        alpha: false,
+        powerPreference: 'high-performance'
+      }}
+      dpr={1} 
     >
       <BlackHoleMesh onReady={onReady} />
     </Canvas>
