@@ -50,11 +50,11 @@ export default function RequestAccessModal({ open, onClose }: RequestAccessModal
             {/* Close Button */}
             <button 
               onClick={onClose}
-              className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors"
+              className="absolute top-4 right-4 md:top-8 md:right-8 text-white/40 hover:text-white transition-all z-50 p-2 group active:scale-95"
+              aria-label="Close modal"
             >
-              <X size={20} />
+              <X size={24} className="group-hover:rotate-90 transition-transform duration-300" />
             </button>
-
             {/* Decorative background glow */}
             <div className="absolute -top-24 -left-24 w-48 h-48 bg-white/5 blur-[80px] rounded-full pointer-events-none" />
 
