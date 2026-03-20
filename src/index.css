@@ -212,7 +212,7 @@
   }
 
   .section-label {
-    @apply text-[30px] tracking-[0.2em] font-mono text-foreground/40 block mb-6;
+    @apply text-[30px] tracking-[0.2em] font-mono text-foreground/70 block mb-6;
   }
 
   .section-heading {
@@ -222,7 +222,7 @@
   }
 
   .section-heading-muted {
-    @apply text-white/20;
+    @apply text-white/60;
   }
 
   .scrollbar-hide {
